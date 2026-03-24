@@ -1,0 +1,144 @@
+@import "tailwindcss";
+
+@source "../../public/**/*.html";
+@source "./**/*.ts";
+
+@theme {
+  --font-family-mono: "JetBrains Mono", monospace;
+  --font-family-sans: "DM Sans", sans-serif;
+}
+
+@layer base {
+  html { @apply bg-slate-950 text-slate-900; }
+  body {
+    @apply bg-slate-950 text-slate-200 min-h-screen font-mono
+    flex flex-col items-center;
+  }
+}
+
+@layer components {
+  .page-wrapper { @apply w-full max-w-2xl space-y-4; }
+
+  header {
+    @apply flex items-center gap-3 pb-5 border-b border-slate-800
+    sticky top-0 z-10 bg-slate-950 w-full max-w-2xl px-2 py-4;
+  }
+  .header-icon {
+    @apply w-9 h-9 bg-blue-600 rounded-lg grid place-items-center
+    text-lg shrink-0;
+  }
+  h1 { @apply font-mono text-lg font-semibold tracking-tight; }
+  .header-badge {
+    @apply ml-auto font-mono text-[0.65rem] font-medium uppercase
+    tracking-widest bg-blue-600/20 text-blue-400 px-2 py-0.5 rounded;
+  }
+
+  .field-group { @apply space-y-3; }
+  .input-row { @apply grid grid-cols-2 gap-3; }
+  .checkbox-row { @apply flex items-center gap-2; }
+  input[type="checkbox"] { @apply accent-blue-500 w-3.5 h-3.5; }
+  .checkbox-label { @apply mb-0 cursor-pointer text-xs; }
+  .btn-group { @apply flex flex-row flex-wrap gap-2; }
+  .field-hint { @apply text-slate-600; }
+  .hidden { display: none; }
+
+  .card {
+    @apply bg-white border-2 border-[#0a0a0a] rounded-none p-5 sm:p-6;
+    box-shadow: 4px 4px 0 #0a0a0a;
+  }
+  .card-title {
+    @apply font-mono text-[0.7rem] font-black uppercase tracking-widest
+    text-[#0a0a0a] mb-4 border-b-2 border-[#0a0a0a] pb-2;
+  }
+
+  label {
+    @apply block font-mono text-[0.72rem] font-bold text-[#0a0a0a]
+    mb-1 uppercase tracking-wider;
+  }
+
+  input[type="text"],
+  input[type="password"],
+  input[type="email"] {
+    @apply w-full px-3 py-2 font-mono text-sm bg-white border-2
+    border-[#0a0a0a] rounded-none text-[#0a0a0a] outline-none
+    placeholder:text-[#999];
+    box-shadow: 2px 2px 0 #0a0a0a;
+    transition: box-shadow 0.1s, transform 0.1s;
+  }
+  input[type="text"]:focus,
+  input[type="password"]:focus,
+  input[type="email"]:focus {
+    box-shadow: 4px 4px 0 #0a0a0a;
+  }
+
+  textarea {
+    @apply w-full px-3 py-2 font-mono text-sm bg-white border-2
+    border-[#0a0a0a] rounded-none text-[#0a0a0a] outline-none
+    resize-y placeholder:text-[#999];
+    box-shadow: 2px 2px 0 #0a0a0a;
+    transition: box-shadow 0.1s;
+  }
+  textarea:focus { box-shadow: 4px 4px 0 #0a0a0a; }
+
+  .btn-primary {
+    @apply font-mono text-[0.78rem] font-black px-4 py-2 border-2
+    border-[#0a0a0a] cursor-pointer flex items-center gap-1.5
+    bg-[#FFE500] text-[#0a0a0a] rounded-none uppercase tracking-wide;
+    box-shadow: 3px 3px 0 #0a0a0a;
+    transition: box-shadow 0.1s, transform 0.1s;
+  }
+  .btn-primary:hover  { box-shadow: 5px 5px 0 #0a0a0a; }
+  .btn-primary:active { box-shadow: none; transform: translate(3px, 3px); }
+
+  .btn-secondary {
+    @apply font-mono text-[0.78rem] font-black px-4 py-2 border-2
+    border-[#0a0a0a] cursor-pointer flex items-center gap-1.5
+    bg-[#00D9FF] text-[#0a0a0a] rounded-none uppercase tracking-wide;
+    box-shadow: 3px 3px 0 #0a0a0a;
+    transition: box-shadow 0.1s, transform 0.1s;
+  }
+  .btn-secondary:hover  { box-shadow: 5px 5px 0 #0a0a0a; }
+  .btn-secondary:active { box-shadow: none; transform: translate(3px, 3px); }
+
+  .btn-danger {
+    @apply font-mono text-[0.78rem] font-black px-4 py-2 border-2
+    border-[#0a0a0a] cursor-pointer flex items-center gap-1.5
+    bg-[#FF2D78] text-white rounded-none uppercase tracking-wide;
+    box-shadow: 3px 3px 0 #0a0a0a;
+    transition: box-shadow 0.1s, transform 0.1s;
+  }
+  .btn-danger:hover  { box-shadow: 5px 5px 0 #0a0a0a; }
+  .btn-danger:active { box-shadow: none; transform: translate(3px, 3px); }
+
+  .cred-block {
+    @apply mt-3 p-3 bg-[#f0f0f0] border-2 border-[#0a0a0a] rounded-none
+    font-mono text-[0.72rem] leading-relaxed text-[#0a0a0a]
+    max-h-56 overflow-y-auto whitespace-pre-wrap break-all;
+  }
+
+  .status-dot {
+    @apply inline-block w-2.5 h-2.5 mr-1.5 align-middle border
+    border-[#0a0a0a];
+    border-radius: 0;
+  }
+  .status-dot.ok   { @apply bg-[#00FF87]; }
+  .status-dot.none { @apply bg-[#ccc]; }
+  .status-dot.err  { @apply bg-[#FF2D78]; }
+
+  .log-area {
+    @apply mt-2 p-3 bg-[#f0f0f0] border-2 border-[#0a0a0a] rounded-none
+    font-mono text-[0.7rem] leading-7 text-[#333] max-h-48
+    overflow-y-auto;
+  }
+  .log-info { @apply text-[#007a3d] font-bold; }
+  .log-warn { @apply text-[#b45309] font-bold; }
+  .log-err  { @apply text-[#FF2D78] font-bold; }
+
+  .key-label { @apply text-[#0057ff] font-black; }
+  .val       { @apply text-[#0a0a0a]; }
+
+  .spinner {
+    @apply inline-block w-3.5 h-3.5 border-2 border-[#0a0a0a]/30
+    border-t-[#0a0a0a] rounded-full animate-spin;
+  }
+}

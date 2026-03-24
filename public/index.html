@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>qc_atomic_station</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style2.css" />
+</head>
+<body>
+
+<header>
+  <div class="header-icon">☢</div>
+  <h1>qc_atomic_station</h1>
+  <span class="header-badge">credentials</span>
+</header>
+
+<div class="page-wrapper">
+
+  <!-- ── Store Credentials ─────────────────────────────────────── -->
+  <section class="card">
+    <h2 class="card-title">Store Credentials</h2>
+    <div class="field-group">
+      <div>
+        <label for="cred-email">Email</label>
+        <input type="email" id="cred-email" placeholder="you@remotasks.com" autocomplete="email" />
+      </div>
+      <div>
+        <label for="cred-password">Password</label>
+        <input type="password" id="cred-password" placeholder="••••••••" autocomplete="current-password" />
+      </div>
+      <div class="input-row">
+        <div>
+          <label for="cred-store">Store Name</label>
+          <input type="text" id="cred-store" placeholder="default_user" value="default_user" />
+        </div>
+        <div>
+          <label for="cred-suffix">Env Suffix</label>
+          <input type="text" id="cred-suffix" placeholder="(optional)" />
+        </div>
+      </div>
+      <div>
+        <label for="cred-token">Access Token</label>
+        <input type="password" id="cred-token" placeholder="paste token from server console" autocomplete="off" />
+      </div>
+      <div class="btn-group">
+        <button id="btn-store-cred" class="btn-primary"><span>⊞</span>Store Credentials</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Key Management ────────────────────────────────────────── -->
+  <section class="card">
+    <h2 class="card-title">Key Management</h2>
+    <div class="field-group">
+      <div class="input-row">
+        <div>
+          <label for="key-store">Store Name</label>
+          <input type="text" id="key-store" placeholder="default_user" value="default_user" />
+        </div>
+        <div>
+          <label for="key-suffix">Env Suffix</label>
+          <input type="text" id="key-suffix" placeholder="(optional)" />
+        </div>
+      </div>
+      <div class="checkbox-row" style="padding-top: 0.25rem">
+        <input type="checkbox" id="key-outlier" checked />
+        <label for="key-outlier" class="checkbox-label">Use Outlier endpoint (expert)</label>
+      </div>
+      <div>
+        <label for="key-token">Access Token</label>
+        <input type="password" id="key-token" placeholder="paste token from server console" autocomplete="off" />
+      </div>
+      <div class="btn-group">
+        <button id="btn-get-key" class="btn-primary"><span>⊞</span>Get Key</button>
+        <button id="btn-update-key" class="btn-secondary"><span>↻</span>Update Key</button>
+        <button id="btn-clear" class="btn-danger"><span>✕</span>Clear</button>
+      </div>
+      <pre id="credential-output" class="cred-block hidden"></pre>
+    </div>
+  </section>
+
+  <!-- ── Device Whitelist ──────────────────────────────────────── -->
+  <section class="card">
+    <h2 class="card-title">Device Whitelist</h2>
+    <div class="field-group">
+      <div>
+        <label for="wl-token">Access Token</label>
+        <input type="password" id="wl-token" placeholder="paste token from server console" autocomplete="off" />
+      </div>
+      <div class="checkbox-row">
+        <input type="checkbox" id="wl-enabled" />
+        <label for="wl-enabled" class="checkbox-label">Enable whitelist</label>
+      </div>
+      <div>
+        <label for="wl-ips">Allowed IPs <span class="field-hint">(one per line)</span></label>
+        <textarea id="wl-ips" rows="3" placeholder="127.0.0.1&#10;192.168.1.100"></textarea>
+      </div>
+      <div>
+        <label for="wl-macs">Allowed MACs <span class="field-hint">(one per line)</span></label>
+        <textarea id="wl-macs" rows="2" placeholder="aa:bb:cc:dd:ee:ff"></textarea>
+      </div>
+      <button id="btn-save-wl" class="btn-primary"><span>✓</span>Save Whitelist</button>
+    </div>
+  </section>
+
+  <!-- ── Log ───────────────────────────────────────────────────── -->
+  <section class="card">
+    <h2 class="card-title">
+      <span id="status-dot" class="status-dot none"></span>Log
+    </h2>
+    <div id="log-area" class="log-area">
+      <div class="log-info">ready.</div>
+    </div>
+  </section>
+
+</div>
+
+<script src="/app.js"></script>
+</body>
+</html>
