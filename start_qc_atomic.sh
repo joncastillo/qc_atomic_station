@@ -12,14 +12,11 @@
   # Run qc_atomic_station in Docker (Node 20) in the background
   # Uses host networking so port 3000 is accessible externally
 
-  mkdir -p "$HOME/.env"
-
   docker run -d \
     --name qc_atomic_station \
     --network=host \
     -v /opt/qc_atomic_station:/app \
     -v /opt/qc_atomic_station/.ssh:/root/.ssh:ro \
-    -v "$HOME/.env":/app/env \
     -w /app \
     node:20 \
     bash -c "npm install && npm start"

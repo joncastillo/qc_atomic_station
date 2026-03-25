@@ -146,7 +146,7 @@ $("#btn-get-key").addEventListener("click", async () => {
 
 // ── Renew Key (update_key) ──────────────────────────────────────────────────
 
-$("#btn-renew-key").addEventListener("click", withSpinner($("#btn-renew-key") as HTMLButtonElement, async () => {
+$("#btn-update-key").addEventListener("click", withSpinner($("#btn-update-key") as HTMLButtonElement, async () => {
     const p = keyParams();
     log(`update_key store=${p.store} endpoint=${p.useOutlier ? "expert" : "worker"}`);
     setStatus("none");
