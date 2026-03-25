@@ -3,26 +3,26 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "build": "npx tsx src/build.ts",
-    "build:minify": "npx tsx src/build.ts --minify",
-    "dev": "npm run build && concurrently -n frontend,backend \"npm run dev:frontend\" \"npm run dev:backend\"",
-    "dev:frontend": "npx @tailwindcss/cli -i src/frontend/style2.css -o dist/public/style2.css --watch",
-    "dev:backend": "node dist/backend/index.js",
-    "start": "npx tsx src/build.ts --minify && NODE_ENV=production node dist/backend/index.js"
+    "dev": "concurrently -n frontend,backend \"npm run frontend\" \"npm run backend\"",
+    "frontend": "vite",
+    "backend": "python src/backend/main.py",
+    "build": "vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "dotenv": "^16.4.0",
-    "express": "^4.21.0",
-    "ip-matching": "^2.1.2"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@tailwindcss/cli": "^4.2.2",
-    "@types/express": "^5.0.0",
-    "@types/node": "^22.0.0",
-    "concurrently": "^9.2.1",
-    "esbuild": "^0.24.0",
+    "@tailwindcss/vite": "^4.2.2",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-basic-ssl": "^1.1.0",
+    "@vitejs/plugin-react": "^4.3.0",
     "tailwindcss": "^4.2.2",
-    "tsx": "^4.19.0",
-    "typescript": "^5.7.0"
+    "typescript": "^5.7.0",
+    "concurrently": "^9.2.1",
+    "vite": "^6.2.0"
   }
 }

@@ -1,7 +1,6 @@
 @import "tailwindcss";
 
-@source "../../public/**/*.html";
-@source "./**/*.ts";
+@source "./**/*.tsx";
 
 @theme {
   --font-family-mono: "JetBrains Mono", monospace;
@@ -28,6 +27,11 @@
     text-lg shrink-0;
   }
   h1 { @apply font-mono text-lg font-semibold tracking-tight; }
+  .header-token {
+    @apply ml-auto font-mono text-xs px-2 py-1 bg-slate-900 border border-slate-700
+    text-slate-300 rounded outline-none placeholder:text-slate-600 w-40;
+  }
+
   .header-badge {
     @apply ml-auto font-mono text-[0.65rem] font-medium uppercase
     tracking-widest bg-blue-600/20 text-blue-400 px-2 py-0.5 rounded;
