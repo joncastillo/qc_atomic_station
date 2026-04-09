@@ -1,8 +1,8 @@
   #!/bin/bash
   DEVICE=joncastillo@192.168.50.199
-  REMOTE=/opt/qc_atomic_station
+  REMOTE=/mnt/sda/opt/qc_atomic_station
 
-  rsync -az --exclude node_modules --exclude dist --exclude .git --exclude env \
+  rsync -az --no-group --no-times --inplace --exclude node_modules --exclude dist --exclude .git --exclude env \
     ./ $DEVICE:$REMOTE/
 
   ssh $DEVICE "bash -l -c '

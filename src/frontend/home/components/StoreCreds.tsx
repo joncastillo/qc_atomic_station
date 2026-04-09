@@ -41,7 +41,7 @@ export default function StoreCreds({ cfg, log, token }: Props) {
       <div className="field-group">
         <div>
           <label>Email</label>
-          <input type="email" placeholder="you@remotasks.com" value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="email" />
+          <input type="email" placeholder="you@outlier.ai" value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="email" />
         </div>
         <div>
           <label>Password</label>

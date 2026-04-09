@@ -10,17 +10,74 @@
 @layer base {
   html { @apply bg-slate-950 text-slate-900; }
   body {
-    @apply bg-slate-950 text-slate-200 min-h-screen font-mono
-    flex flex-col items-center;
+    @apply text-slate-200 min-h-screen font-mono
+    flex flex-col items-center py-10 px-10;
   }
 }
 
 @layer components {
-  .page-wrapper { @apply w-full max-w-2xl space-y-4; }
+  .header-fade {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    /* fully opaque through the header, then fades to transparent below it */
+    background: linear-gradient(to bottom,
+      rgb(2,6,23) 0%,
+      rgb(2,6,23) 50%,
+      transparent 100%
+    );
+    z-index: 9;
+    pointer-events: none;
+  }
+
+  .video-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgb(2,6,23);
+    z-index: -1;
+    pointer-events: none;
+    opacity: 1;
+  }
+
+  .bg-video {
+    position: fixed;
+    top: 0; right: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: right center;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .page-wrapper {
+    @apply w-full flex flex-row gap-4 items-start;
+  }
+  .left-col { @apply flex flex-col gap-4 w-2xl shrink-0; }
+
+  .log-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 260px;
+    align-self: stretch;
+  }
+  .log-area-fill {
+    @apply mt-0 p-3 bg-[#f0f0f0] border-2 border-[#0a0a0a] rounded-none
+    font-mono text-[0.7rem] leading-7 text-[#333] overflow-y-auto;
+    flex: 1;
+    min-height: 0;
+    overflow-x: hidden;
+    word-break: break-all;
+    background: rgba(255, 255, 255, 0.7);
+  }
 
   header {
     @apply flex items-center gap-3 pb-5 border-b border-slate-800
-    sticky top-0 z-10 bg-slate-950 w-full max-w-2xl px-2 py-4;
+    sticky top-0 z-10 w-full px-2 py-4;
+    background: rgba(2,6,23,0.25);
+    backdrop-filter: blur(4px);
   }
   .header-icon {
     @apply w-9 h-9 bg-blue-600 rounded-lg grid place-items-center
@@ -29,7 +86,7 @@
   h1 { @apply font-mono text-lg font-semibold tracking-tight; }
   .header-token {
     @apply ml-auto font-mono text-xs px-2 py-1 bg-slate-900 border border-slate-700
-    text-slate-300 rounded outline-none placeholder:text-slate-600 w-40;
+    text-slate-300 rounded outline-none placeholder:text-slate-600 w-16;
   }
 
   .header-badge {
@@ -49,6 +106,8 @@
   .card {
     @apply bg-white border-2 border-[#0a0a0a] rounded-none p-5 sm:p-6;
     box-shadow: 4px 4px 0 #0a0a0a;
+    background: rgba(255, 255, 255, 0.2);
+
   }
   .card-title {
     @apply font-mono text-[0.7rem] font-black uppercase tracking-widest
@@ -117,7 +176,8 @@
   .cred-block {
     @apply mt-3 p-3 bg-[#f0f0f0] border-2 border-[#0a0a0a] rounded-none
     font-mono text-[0.72rem] leading-relaxed text-[#0a0a0a]
-    max-h-56 overflow-y-auto whitespace-pre-wrap break-all;
+    whitespace-pre-wrap break-all overflow-y-auto;
+    height: 5.5rem; /* fixed height — card won't resize when cred appears/disappears */
   }
 
   .status-dot {

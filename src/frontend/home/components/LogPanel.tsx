@@ -14,12 +14,8 @@ export default function LogPanel({ logs, status }: Props) {
   }, [logs]);
 
   return (
-    <section className="card">
-      <h2 className="card-title">
-        <span className={`status-dot ${status}`} />
-        Log
-      </h2>
-      <div className="log-area" ref={ref}>
+    <section className="card log-card">
+      <div className="log-area-fill" ref={ref}>
         {logs.map((entry, i) => (
           <div key={i} className={`log-${entry.level}`}>
             [{entry.ts}] {entry.text}

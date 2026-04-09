@@ -117,9 +117,9 @@ export default function KeyManagement({ cfg, log, setStatus, token }: Props) {
           </button>
           <button className="btn-danger" onClick={handleClear}><span>✕</span> Clear</button>
         </div>
-        {cred && (
-          <pre className="cred-block">
-            {cred.ok && cred.cookie && cred.csrf ? (
+        <pre className="cred-block">
+          {cred ? (
+            cred.ok && cred.cookie && cred.csrf ? (
               <>
                 <span className="key-label">COOKIE</span>{"  "}<span className="val">{trunc(cred.cookie)}</span>
                 {cred.renewed && <span className="log-warn"> (renewed)</span>}
@@ -128,9 +128,11 @@ export default function KeyManagement({ cfg, log, setStatus, token }: Props) {
               </>
             ) : (
               <span className="text-slate-500">{cred.message ?? "No credentials."}</span>
-            )}
-          </pre>
-        )}
+            )
+          ) : (
+            <span className="text-slate-400">—</span>
+          )}
+        </pre>
       </div>
     </section>
   );
